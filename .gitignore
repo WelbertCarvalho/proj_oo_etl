@@ -1,6 +1,3 @@
-# itself
-.gitignore
-
 # pycache in local run
 __pycache__/
 
@@ -9,4 +6,3 @@ kaggle_datasets/
 
 # Databases config
 config.py
-
