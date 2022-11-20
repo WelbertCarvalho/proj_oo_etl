@@ -1,3 +1,4 @@
+from pathlib import Path
 import requests
 import json
 import pandas as pd
@@ -13,7 +14,6 @@ class Extract:
         json_data = json.loads(r.text)
         json_data = dict(json_data[0])
         print(json_data)
-        print(type(json_data))
         return json_data
 
     def create_dataframe_using_json(self, json_data):
@@ -38,3 +38,15 @@ class Extract:
         )
         print(f"The file {file_name} was successfully downloaded")
         return None
+
+    def create_dataframe_reading_sql_file_without_param(self, file_name, connection):
+        this_path_file = Path().absolute()
+        sql_path = f"{this_path_file}/sql"
+        sql_file = open(f"{sql_path}/{file_name}.sql", 'r')
+        sql_content = sql_file.read()
+        sql_file.close()
+        df = pd.read_sql_query(sql_content, connection)
+        print(df.head())
+        return df
+        
+    
