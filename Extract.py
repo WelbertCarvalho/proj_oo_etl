@@ -55,13 +55,3 @@ class Extract:
         print(df.head())
         return df
         
-    def create_csv_using_df(self, df, target_file_name):
-        path = './exported_dataframes'
-        df.to_csv(
-            f'{path}/{target_file_name}.csv',
-            index = False,
-            sep = ';',
-            encoding = 'utf-8',
-            header = True
-         )
-        return None
