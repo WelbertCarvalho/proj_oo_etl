@@ -4,5 +4,8 @@ __pycache__/
 # Folder of kaggle_datasets
 kaggle_datasets/
 
+# Folder of exported_datasets
+exported_datasets/
+
 # Databases config
 config.py
