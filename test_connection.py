@@ -35,6 +35,6 @@ instance_extract\
 
 economic_freedom_2 = instance_extract.create_df_using_csv(
     csv_path_and_file_name\
-         = '/home/welbert/Documents/proj_oo/exported_dataframes/economic_freedom_test_file.csv',
+         = '/home/welbert/Documents/proj_oo/exported_datasets/economic_freedom_test_file.csv',
          separator = ';'
     )
