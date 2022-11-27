@@ -2,6 +2,7 @@ from pathlib import Path
 import requests
 import json
 import pandas as pd
+from datetime import datetime as dt
 
 from kaggle.api.kaggle_api_extended import KaggleApi
 
@@ -21,17 +22,6 @@ class Extract:
         print(df.head())
         return df
 
-    def create_df_using_csv(self, csv_path_and_file_name, separator = ','):
-        try:
-            df = pd.read_csv(csv_path_and_file_name, separator, encoding = 'utf-8')
-            print('Used encoding: utf-8')
-        except:
-            print('Used encoding: latin_1')
-            df = pd.read_csv(csv_path_and_file_name, separator, encoding = 'latin_1')
-        
-        print(df.head())
-        return df
-
     def download_kaggle_dataset(self,user, file_name):
         api = KaggleApi()
         api.authenticate()
@@ -45,16 +35,17 @@ class Extract:
         print(f"The file {file_name} was successfully downloaded")
         return None
 
-    def create_df_reading_sql_file_without_param(self, file_name, connection):
-        this_path_file = Path().absolute()
-        sql_path = f"{this_path_file}/sql"
-        sql_file = open(f"{sql_path}/{file_name}.sql", 'r')
-        sql_content = sql_file.read()
-        sql_file.close()
-        df = pd.read_sql_query(sql_content, connection)
+    def create_df_using_csv(self, csv_path_and_file_name, separator = ','):
+        try:
+            df = pd.read_csv(csv_path_and_file_name, separator, encoding = 'utf-8')
+            print('Used encoding: utf-8')
+        except:
+            print('Used encoding: latin_1')
+            df = pd.read_csv(csv_path_and_file_name, separator, encoding = 'latin_1')
+        
         print(df.head())
         return df
-        
+
     def create_csv_using_df(self, df, target_file_name):
         path = './exported_datasets'
         df.to_csv(
@@ -65,3 +56,28 @@ class Extract:
             header = True
          )
         return None
+
+    def sql_file_content(self, file_name):
+        this_path_file = Path().absolute()
+        sql_path = f"{this_path_file}/sql"
+        sql_file = open(f"{sql_path}/{file_name}.sql", 'r')
+        sql_content = sql_file.read()
+        sql_file.close()
+        return sql_content
+    
+    def create_df_reading_sql_file_without_param(self, file_name, connection):
+        sql_content = self.sql_file_content(file_name)
+        df = pd.read_sql_query(sql_content, connection)
+        print(df.head())
+        return df
+         
+    def create_df_reading_sql_file_with_dates_param(self, file_name, connection, start_date, end_date):
+        params = (start_date, end_date)
+        sql_content = self.sql_file_content(file_name)
+        df = pd.read_sql_query(
+            sql = sql_content, 
+            con = connection, 
+            params = params)
+        print(df.head())
+        return df
+        
