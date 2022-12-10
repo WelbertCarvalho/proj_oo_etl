@@ -2,8 +2,8 @@ from Connection import Connection
 from Extract import Extract
 
 instance_con = Connection()
-datalake = instance_con.mysql_datalake_con()
-dw = instance_con.mysql_datawarehouse_con()
+datalake = instance_con.mysql_con('datalake')
+dw = instance_con.mysql_con('data_warehouse')
 
 instance_extract = Extract()
 # json_data = instance_extract.get_json_data("https://economia.awesomeapi.com.br/json/daily/USD-BRL/0")
