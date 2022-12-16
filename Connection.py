@@ -5,9 +5,7 @@ class Connection:
     def __init__(self):
         print("Instance of connection object\n")
 
-
     def mysql_con(self, database_name):
-
         try:
             con = mysql.connector.connect(
                 host = c[database_name]["host"],
@@ -20,3 +18,4 @@ class Connection:
         except:
             print(f"It was not possible to connect to {c[database_name]['database']}. Verify your connection.\n")
             return None
+
