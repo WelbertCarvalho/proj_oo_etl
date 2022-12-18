@@ -17,12 +17,24 @@ economic_freedom_2 = instance_extract.create_df_using_csv(
 
 
 
-# t = Transform()
-# economic_freedom_transformed = t.replace_specific_characters(economic_freedom_2, "GDP (Billions, PPP)")
-teste = economic_freedom_2["GDP (Billions, PPP)"].replace(["$"], "", inplace = True)
+t = Transform()
+economic_freedom_transformed\
+     = t.exclude_character_in_column(
+        economic_freedom_2,  
+        [ 
+            "GDP (Billions, PPP)", 
+            "GDP per Capita (PPP)", 
+            "Unemployment (%)", 
+            "FDI Inflow (Millions)"
+        ],
+        "$"
+    )
 
 
-teste = economic_freedom_2[["Population (Millions)", "GDP (Billions, PPP)", "GDP per Capita (PPP)", "Unemployment (%)", "FDI Inflow (Millions)"]]
+# economic_freedom_2["GDP (Billions, PPP)"] = economic_freedom_2["GDP (Billions, PPP)"].str.replace("$", "")
+ 
+teste\
+     = economic_freedom_transformed[["Population (Millions)", "GDP (Billions, PPP)", "GDP per Capita (PPP)", "Unemployment (%)", "FDI Inflow (Millions)"]]
 
 
 print(teste.head())
@@ -30,6 +42,13 @@ print(teste.info())
 
 
 
+print("------------------------------------------------------")
+
+
+
+
+print(economic_freedom_transformed[["Population (Millions)", "GDP (Billions, PPP)", "GDP per Capita (PPP)", "Unemployment (%)", "FDI Inflow (Millions)"]].head())
+print(economic_freedom_transformed.info())
 
 
 
