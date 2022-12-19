@@ -15,11 +15,20 @@ economic_freedom_2 = instance_extract.create_df_using_csv(
          separator = ';'
     )
 
+# creating and printing df before transformation
+teste\
+     = economic_freedom_2[
+        ["Population (Millions)", 
+        "GDP (Billions, PPP)", 
+        "GDP per Capita (PPP)", 
+        "Unemployment (%)", 
+        "FDI Inflow (Millions)"]]
 
+print(teste.head())
 
 t = Transform()
 economic_freedom_transformed\
-     = t.exclude_character_in_column(
+     = t.exclude_character_in_columns(
         economic_freedom_2,  
         [ 
             "GDP (Billions, PPP)", 
@@ -27,28 +36,40 @@ economic_freedom_transformed\
             "Unemployment (%)", 
             "FDI Inflow (Millions)"
         ],
-        "$"
+        ["$",","]
     )
 
+economic_freedom_transformed\
+    = t.transform_columns_type(
+        economic_freedom_transformed,
+        [ 
+            "GDP (Billions, PPP)", 
+            "GDP per Capita (PPP)", 
+            "Unemployment (%)", 
+            "FDI Inflow (Millions)"
+        ], 
+        'float')
 
-# economic_freedom_2["GDP (Billions, PPP)"] = economic_freedom_2["GDP (Billions, PPP)"].str.replace("$", "")
- 
+
+
+# creating and printing df after transformation
 teste\
-     = economic_freedom_transformed[["Population (Millions)", "GDP (Billions, PPP)", "GDP per Capita (PPP)", "Unemployment (%)", "FDI Inflow (Millions)"]]
+     = economic_freedom_transformed[
+        ["Population (Millions)", 
+        "GDP (Billions, PPP)", 
+        "GDP per Capita (PPP)", 
+        "Unemployment (%)", 
+        "FDI Inflow (Millions)"]]
 
 
 print(teste.head())
 print(teste.info())
 
 
+# In this test we can see that there are some non-numeric values. 
+# It's necessary to exclude it.
 
-print("------------------------------------------------------")
-
-
-
-
-print(economic_freedom_transformed[["Population (Millions)", "GDP (Billions, PPP)", "GDP per Capita (PPP)", "Unemployment (%)", "FDI Inflow (Millions)"]].head())
-print(economic_freedom_transformed.info())
-
+grupo = economic_freedom_2["GDP (Billions, PPP)"].unique()
+print(grupo)
 
 
