@@ -12,6 +12,7 @@ class Transform():
 
     def transform_columns_type(self, df, columns, target_type):
         for column in columns:
+            df[column] = df[column].str.extract('(\d+)', expand = False)
             try:
                 df[column] = df[column].astype(target_type)
                 print(f"Column: {column} transformed in {target_type} type.")

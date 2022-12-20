@@ -27,21 +27,21 @@ teste\
 print(teste.head())
 
 t = Transform()
-economic_freedom_transformed\
-     = t.exclude_character_in_columns(
-        economic_freedom_2,  
-        [ 
-            "GDP (Billions, PPP)", 
-            "GDP per Capita (PPP)", 
-            "Unemployment (%)", 
-            "FDI Inflow (Millions)"
-        ],
-        ["$",","]
-    )
+# economic_freedom_transformed\
+#      = t.exclude_character_in_columns(
+#         economic_freedom_2,  
+#         [ 
+#             "GDP (Billions, PPP)", 
+#             "GDP per Capita (PPP)", 
+#             "Unemployment (%)", 
+#             "FDI Inflow (Millions)"
+#         ],
+#         ["$",","]
+#     )
 
 economic_freedom_transformed\
     = t.transform_columns_type(
-        economic_freedom_transformed,
+        economic_freedom_2,
         [ 
             "GDP (Billions, PPP)", 
             "GDP per Capita (PPP)", 
