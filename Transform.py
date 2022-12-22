@@ -5,7 +5,7 @@ class Transform():
     def __init__(self):
         print("Instance of transform object\n")
 
-    
+
     def transform_columns_type(self, df, columns, target_type):
         for column in columns:
             df[column] = df[column].str.extract('(\d+)', expand = False)
@@ -48,3 +48,4 @@ class Transform():
         print(type(group))
 
         return group
+        
