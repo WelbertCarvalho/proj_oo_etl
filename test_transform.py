@@ -24,20 +24,10 @@ teste\
         "Unemployment (%)", 
         "FDI Inflow (Millions)"]]
 
+print(teste.info())
 print(teste.head())
 
 t = Transform()
-# economic_freedom_transformed\
-#      = t.exclude_character_in_columns(
-#         economic_freedom_2,  
-#         [ 
-#             "GDP (Billions, PPP)", 
-#             "GDP per Capita (PPP)", 
-#             "Unemployment (%)", 
-#             "FDI Inflow (Millions)"
-#         ],
-#         ["$",","]
-#     )
 
 economic_freedom_transformed\
     = t.transform_columns_type(
@@ -50,8 +40,6 @@ economic_freedom_transformed\
         ], 
         'float')
 
-
-
 # creating and printing df after transformation
 teste\
      = economic_freedom_transformed[
@@ -59,17 +47,20 @@ teste\
         "GDP (Billions, PPP)", 
         "GDP per Capita (PPP)", 
         "Unemployment (%)", 
-        "FDI Inflow (Millions)"]]
-
+        "FDI Inflow (Millions)"
+        ]
+    ]
 
 print(teste.head())
 print(teste.info())
 
 
-# In this test we can see that there are some non-numeric values. 
-# It's necessary to exclude it.
+# Grouping data
+mean_unemployment_region\
+    = t.group_data(
+        economic_freedom_transformed, 
+        "Region", 
+        "Unemployment (%)",
+        "mean")
 
-grupo = economic_freedom_2["GDP (Billions, PPP)"].unique()
-print(grupo)
-
-
+print(mean_unemployment_region.head(20))
