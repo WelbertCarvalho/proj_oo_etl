@@ -61,6 +61,17 @@ mean_unemployment_region\
         economic_freedom_transformed, 
         "Region", 
         "Unemployment (%)",
-        "mean")
+        "count")
 
 print(mean_unemployment_region.head(20))
+
+
+data_filtered = t.filter_data(
+    economic_freedom_transformed, 
+    'Region', 
+    'Europe'
+    )
+
+print(data_filtered.head())
+
+print(economic_freedom_transformed.shape)

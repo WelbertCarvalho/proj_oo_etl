@@ -37,9 +37,7 @@ class Transform():
         elif function == "var":
             group = df.groupby(col_to_group)[col_to_analyze].var()
         else:
-            print("The function informed it's not suported.\
-                Please, check pandas doc for more information\
-                about acceptable functions to use within groupby")
+            print("The function informed it's not suported. Please, check pandas doc for more information about acceptable functions to use within groupby")
             return None
 
         group = pd.DataFrame(group, columns = [col_to_analyze])
@@ -48,4 +46,8 @@ class Transform():
         print(type(group))
 
         return group
-        
+
+    def filter_data(self, df, column, criteria):
+        df_select = df[column] == criteria
+        df = df [df_select]
+        return df
