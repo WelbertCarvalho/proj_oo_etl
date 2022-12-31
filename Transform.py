@@ -5,7 +5,6 @@ class Transform():
     def __init__(self):
         print("Instance of transform object\n")
 
-
     def transform_columns_type(self, df, columns, target_type):
         for column in columns:
             df[column] = df[column].str.extract('(\d+)', expand = False)
@@ -16,6 +15,12 @@ class Transform():
                 print(f"Column: {column} it's not in a correct format to transform in {target_type} type.")
                 continue
         return df
+
+    def apply_fillna(self):
+        pass
+
+    def delete_where_nan(self):
+        pass
 
     def group_data(self, df, col_to_group, col_to_analyze, function):
         if function == "count":
@@ -51,3 +56,7 @@ class Transform():
         df_select = df[column] == criteria
         df = df [df_select]
         return df
+
+    def df_total_rows(self, df):
+        count_rows = df.shape[0]
+        return f'Number of rows: {count_rows}'

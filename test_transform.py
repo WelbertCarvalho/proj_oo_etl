@@ -65,7 +65,6 @@ mean_unemployment_region\
 
 print(mean_unemployment_region.head(20))
 
-
 data_filtered = t.filter_data(
     economic_freedom_transformed, 
     'Region', 
@@ -74,4 +73,7 @@ data_filtered = t.filter_data(
 
 print(data_filtered.head())
 
-print(economic_freedom_transformed.shape)
+# Total lines in a dataframe
+total_rows_Europe = t.df_total_rows(data_filtered)
+print(total_rows_Europe)
+
