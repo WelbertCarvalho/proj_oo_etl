@@ -2,13 +2,18 @@ from Connection import Connection
 from Extract import Extract
 from Transform import Transform
 
+
+# Creating an instance of the connection object
 instance_con = Connection()
 datalake = instance_con.mysql_con('datalake')
 dw = instance_con.mysql_con('data_warehouse')
 
+
+# Creating an instance of the extract object
 instance_extract = Extract()
 
 
+# Creating a dataframe using a local csv
 economic_freedom_2 = instance_extract.create_df_using_csv(
     csv_path_and_file_name\
          = '/home/welbert/Documents/proj_oo/exported_datasets/economic_freedom_test_file.csv',
@@ -24,9 +29,12 @@ teste\
         "Unemployment (%)", 
         "FDI Inflow (Millions)"]]
 
+# Printing Information before apply the transformation in the teste df
 print(teste.info())
 print(teste.head())
 
+
+# Creating an instance of transform object and transforming the float columns
 t = Transform()
 
 economic_freedom_transformed\
@@ -40,6 +48,7 @@ economic_freedom_transformed\
         ], 
         'float')
 
+
 # creating and printing df after transformation
 teste\
      = economic_freedom_transformed[
@@ -51,11 +60,12 @@ teste\
         ]
     ]
 
+# Printing Information after transformation
 print(teste.head())
 print(teste.info())
 
 
-# Grouping data
+# Grouping and printing data
 mean_unemployment_region\
     = t.group_data(
         economic_freedom_transformed, 
@@ -65,6 +75,7 @@ mean_unemployment_region\
 
 print(mean_unemployment_region.head(20))
 
+# Filtering and printing df
 data_filtered = t.filter_data(
     economic_freedom_transformed, 
     'Region', 
