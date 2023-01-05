@@ -6,15 +6,32 @@ class Transform():
         print("Instance of transform object\n")
 
     def transform_columns_type(self, df, columns, target_type):
+        # Excluding non-numeric characters in every column of the list
         for column in columns:
-            df[column] = df[column].str.extract('(\d+)', expand = False)
+            try:
+                df[column] = df[column].str.extract('(\d+)', expand = False)
+            except:
+                print(f"The column named: {column} don't contains non-numeric character.")
+                continue
+
+        # Converting every column in the target_type
+        for column in columns:
             try:
                 df[column] = df[column].astype(target_type)
                 print(f"Column: {column} transformed in {target_type} type.")
             except:
                 print(f"Column: {column} it's not in a correct format to transform in {target_type} type.")
                 continue
+    
         return df
+
+    def show_where_is_null(self, df, column):
+       new_df = df[df[column].isnull()].shape[0]
+       return new_df
+
+    def delete_where_is_null(self, df, columns):
+        df_new = df.dropna(subset = [columns])
+        return df_new
 
     def apply_fillna(self):
         pass
