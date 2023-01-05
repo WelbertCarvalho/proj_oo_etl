@@ -14,12 +14,10 @@ class Extract:
         r = requests.get(url)
         json_data = json.loads(r.text)
         json_data = dict(json_data[0])
-        print(json_data)
         return json_data
 
     def create_df_using_json(self, json_data):
         df = pd.DataFrame(json_data, index=[0])
-        print(df.head())
         return df
 
     def download_kaggle_dataset(self,user, file_name):
@@ -42,8 +40,6 @@ class Extract:
         except:
             print('Used encoding: latin_1')
             df = pd.read_csv(csv_path_and_file_name, separator, encoding = 'latin_1')
-        
-        print(df.head())
         return df
 
     def create_csv_using_df(self, df, target_file_name):
@@ -68,7 +64,6 @@ class Extract:
     def create_df_reading_sql_file_without_param(self, file_name, connection):
         sql_content = self.sql_file_content(file_name)
         df = pd.read_sql_query(sql_content, connection)
-        print(df.head())
         return df
          
     def create_df_reading_sql_file_with_dates_param(self, file_name, connection, start_date, end_date):
@@ -78,6 +73,5 @@ class Extract:
             sql = sql_content, 
             con = connection, 
             params = params)
-        print(df.head())
         return df
         
