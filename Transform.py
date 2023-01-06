@@ -26,18 +26,16 @@ class Transform():
         return df
 
     def show_where_is_null(self, df, column):
-       new_df = df[df[column].isnull()].shape[0]
+       new_df = df[df[column].isnull()]
        return new_df
 
-    def delete_where_is_null(self, df, columns):
-        df_new = df.dropna(subset = [columns])
+    def delete_where_is_null(self, df, columns = None):
+        if columns == None:
+            df_new = df.dropna()
+        else:
+            df_new = df.dropna(subset = [columns])
         return df_new
 
-    def apply_fillna(self):
-        pass
-
-    def delete_where_nan(self):
-        pass
 
     def group_data(self, df, col_to_group, col_to_analyze, function):
         if function == "count":
