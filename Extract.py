@@ -8,7 +8,7 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 
 class Extract:
     def __init__(self):
-        print(f"Instance of extract object\n")
+        print("Instance of extract object\n")
 
     def get_json_data(self, url):
         r = requests.get(url)
@@ -21,6 +21,10 @@ class Extract:
         return df
 
     def download_kaggle_dataset(self,user, file_name):
+        '''
+            More references about how to use kaggle API here:
+            https://github.com/Kaggle/kaggle-api
+        '''
         api = KaggleApi()
         api.authenticate()
 
@@ -30,8 +34,8 @@ class Extract:
             path = './kaggle_datasets',
             force = True
         )
-        print(f"The file {file_name} was successfully downloaded")
-        return None
+        
+        return f"The file {file_name} was successfully downloaded"
 
     def create_df_using_csv(self, csv_path_and_file_name, separator = ','):
         try:
@@ -51,9 +55,9 @@ class Extract:
             encoding = 'utf-8',
             header = True
          )
-        return None
+        return f"CSV file created in '{path}/{target_file_name}.csv'"
 
-    def sql_file_content(self, file_name):
+    def _sql_file_content(self, file_name):
         this_path_file = Path().absolute()
         sql_path = f"{this_path_file}/sql"
         sql_file = open(f"{sql_path}/{file_name}.sql", 'r')
@@ -62,13 +66,13 @@ class Extract:
         return sql_content
     
     def create_df_reading_sql_file_without_param(self, file_name, connection):
-        sql_content = self.sql_file_content(file_name)
+        sql_content = self._sql_file_content(file_name)
         df = pd.read_sql_query(sql_content, connection)
         return df
          
     def create_df_reading_sql_file_with_dates_param(self, file_name, connection, start_date, end_date):
         params = (start_date, end_date)
-        sql_content = self.sql_file_content(file_name)
+        sql_content = self._sql_file_content(file_name)
         df = pd.read_sql_query(
             sql = sql_content, 
             con = connection, 

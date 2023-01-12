@@ -36,6 +36,9 @@ class Transform():
             df_new = df.dropna(subset = [columns])
         return df_new
 
+    def delete_duplicates(self):
+        pass
+
 
     def group_data(self, df, col_to_group, col_to_analyze, function):
         if function == "count":
