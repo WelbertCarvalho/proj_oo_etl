@@ -25,56 +25,21 @@ class Transform():
     
         return df
 
-    def show_where_is_null(self, df, column):
-       new_df = df[df[column].isnull()]
-       return new_df
+    def show_where_is_null(self, df, columns): 
+        for column in columns:
+            new_df = df[df[column].isnull()]    
+            new_df.append(new_df)
+        
+        return new_df
 
-    def delete_where_is_null(self, df, columns = None):
-        if columns == None:
-            df_new = df.dropna()
-        else:
-            df_new = df.dropna(subset = [columns])
+    def delete_where_is_null_using_index(self, df, df_rows_to_exclude):
+        df_new = df[~df.index.isin(df_rows_to_exclude.index)]
+        df_new.index = range(df_new.shape[0])
         return df_new
-
-    def delete_duplicates(self):
-        pass
-
-
-    def group_data(self, df, col_to_group, col_to_analyze, function):
-        if function == "count":
-            group = df.groupby(col_to_group)[col_to_analyze].count()
-        elif function == "sum":
-            group = df.groupby(col_to_group)[col_to_analyze].sum()
-        elif function == "mean":
-            group = df.groupby(col_to_group)[col_to_analyze].mean()
-        elif function == "median":
-            group = df.groupby(col_to_group)[col_to_analyze].median()
-        elif function == "min":
-            group = df.groupby(col_to_group)[col_to_analyze].min()
-        elif function == "max":
-            group = df.groupby(col_to_group)[col_to_analyze].max()
-        elif function == "mode":
-            group = df.groupby(col_to_group)[col_to_analyze].mode()
-        elif function == "std":
-            group = df.groupby(col_to_group)[col_to_analyze].std()
-        elif function == "var":
-            group = df.groupby(col_to_group)[col_to_analyze].var()
-        else:
-            print("The function informed it's not suported. Please, check pandas doc for more information about acceptable functions to use within groupby")
-            return None
-
-        group = pd.DataFrame(group, columns = [col_to_analyze])
-
-        group = group.sort_values(by=[col_to_analyze], ascending = False)
-        print(type(group))
-
-        return group
 
     def filter_data(self, df, column, criteria):
         df_select = df[column] == criteria
-        df = df [df_select]
-        return df
+        df_new = df[df_select]
+        df_new.index = range(df_new.shape[0])
+        return df_new
 
-    def df_total_rows(self, df):
-        count_rows = df.shape[0]
-        return f'Number of rows: {count_rows}'
