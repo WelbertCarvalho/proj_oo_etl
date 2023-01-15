@@ -46,8 +46,8 @@ class Extract:
             df = pd.read_csv(csv_path_and_file_name, separator, encoding = 'latin_1')
         return df
 
-    def create_csv_using_df(self, df, target_file_name):
-        path = './exported_datasets'
+    def create_csv_using_df(self, df, folder_name, target_file_name):
+        path = f'./{folder_name}'
         df.to_csv(
             f'{path}/{target_file_name}.csv',
             index = False,
