@@ -7,5 +7,8 @@ kaggle_datasets/
 # Folder of exported_datasets
 exported_datasets/
 
+# Folder of transformed_datasets
+transformed_datasets/
+
 # Databases config
 config.py
