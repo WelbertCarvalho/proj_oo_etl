@@ -1,6 +1,6 @@
 import pandas as pd
 
-from Connection import Connection
+from modules.connection import Connection
 
 
 class Load:

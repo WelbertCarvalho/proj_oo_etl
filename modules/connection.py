@@ -1,5 +1,5 @@
 import mysql.connector
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 
 from config import connections as c
 
