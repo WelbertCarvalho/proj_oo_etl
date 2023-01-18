@@ -10,5 +10,8 @@ exported_datasets/
 # Folder of transformed_datasets
 transformed_datasets/
 
+# Jupyter notebboks for test
+jupyter_notebooks/
+
 # Databases config
 config.py
