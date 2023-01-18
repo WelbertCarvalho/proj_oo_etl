@@ -11,7 +11,7 @@ class Load:
         instance_connection = Connection()
         con = instance_connection.sqlalchemy_conn(
             database_name = target_conn, 
-            type_connection = type_connection    
+            type_connection = type_connection   
         )
 
         print(con)
@@ -19,8 +19,7 @@ class Load:
         df.to_sql(
             name = table_name,
             con = con,
-            if_exists = 'append',
-            index_label = 'id'
+            if_exists = 'append'
         )
 
         return f"A table named {table_name} was created in the DB."

@@ -1,5 +1,5 @@
 import mysql.connector
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 
 from config import connections as c
 
@@ -29,9 +29,15 @@ class Connection:
         port = c[database_name]["port"]
         database = c[database_name]["database"]
 
+        url = f"{type_connection}://{user}:{password}@{host}:{port}/{database}"
+
         con = create_engine(
-            url = f"{type_connection}://{user}:{password}@{host}:{port}/{database}"
+            url = url
         )
+        
         print(f"Connection stablished: {database_name}")
 
         return con
+
+
+    
