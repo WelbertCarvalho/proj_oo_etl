@@ -1,4 +1,3 @@
-import mysql.connector
 from sqlalchemy import create_engine
 
 from config import connections as c
@@ -24,6 +23,3 @@ class Connection:
         print(f"Connection stablished: {database_name}")
 
         return con
-
-
-    
