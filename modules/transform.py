@@ -38,19 +38,3 @@ class Transform():
             df[column] = df[column].fillna(0)
 
         return df
-
-    
-
-    def show_where_is_null(self, df, columns): 
-        for column in columns:
-            new_df = df[df[column].isnull()]    
-            new_df.append(new_df)
-        
-        return new_df
-
-    def delete_where_is_null_using_index(self, df, df_rows_to_exclude):
-        df_new = df[~df.index.isin(df_rows_to_exclude.index)]
-        df_new.index = range(df_new.shape[0])
-        return df_new
-
-

@@ -7,5 +7,3 @@ The main objective of this project it's to provide classes to execute ETL proces
 + Extract
 + Transform
 + Load
-
-ps: Still working on some classes
