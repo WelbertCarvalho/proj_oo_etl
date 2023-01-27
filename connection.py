@@ -1,7 +1,5 @@
 from sqlalchemy import create_engine
-
 from config import connections as c
-
 
 class Connection:
     def __init__(self):

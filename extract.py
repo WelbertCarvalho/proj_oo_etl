@@ -4,8 +4,6 @@ import json
 import pandas as pd
 from datetime import datetime as dt
 
-from kaggle.api.kaggle_api_extended import KaggleApi
-
 class Extract:
     def __init__(self):
         print("Instance of extract object\n")
@@ -19,23 +17,6 @@ class Extract:
     def create_df_using_json(self, json_data):
         df = pd.DataFrame(json_data, index=[0])
         return df
-
-    def download_kaggle_dataset(self,user, file_name):
-        '''
-            More references about how to use kaggle API here:
-            https://github.com/Kaggle/kaggle-api
-        '''
-        api = KaggleApi()
-        api.authenticate()
-
-        api.dataset_download_file(
-            dataset = user,
-            file_name = file_name,
-            path = './kaggle_datasets',
-            force = True
-        )
-        
-        return f"The file {file_name} was successfully downloaded"
 
     def create_df_using_csv(self, csv_path_and_file_name, separator = ','):
         try:

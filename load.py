@@ -1,7 +1,4 @@
-import pandas as pd
-
-from modules.connection import Connection
-
+from connection import Connection
 
 class Load:
     def __init__(self):

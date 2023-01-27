@@ -1,7 +1,7 @@
 select 
     * 
 from 
-    datalake.cotacao_moedas 
+    sakila.film 
 where 
-    created_date >= %s 
-    and created_date <= %s
+    last_update >= %s 
+    and last_update <= %s
