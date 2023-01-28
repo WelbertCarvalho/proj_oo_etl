@@ -19,5 +19,4 @@ class Connection:
         )
         
         print(f"Connection stablished: {database_name}")
-
         return con

@@ -11,10 +11,7 @@ exported_datasets/
 transformed_datasets/
 
 # Jupyter notebboks for test
-testing_extract_class_and_methods.ipynb
-testing_transform_class_and_methods.ipynb
-testing_load_class_and_methods.ipynb
-
+etl_testing.ipynb
 
 # Databases config
 config.py

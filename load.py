@@ -18,5 +18,4 @@ class Load:
             con = con,
             if_exists = 'append'
         )
-
         return f"A table named {table_name} was created in the DB."
